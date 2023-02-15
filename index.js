@@ -1,7 +1,10 @@
 const { XMLParser, XMLBuilder } = require("fast-xml-parser");
 
 function parseXML(contents) {
-    const parser = new XMLParser();
+    const options = {
+        ignoreAttributes: false
+    };
+    const parser = new XMLParser(options);
     const pom = parser.parse(contents);
     return pom;
 };
@@ -13,7 +16,12 @@ function verifyPom(pomObject) {
 };
 
 function buildXML(obj) {
-    const builder = new XMLBuilder();
+    const options = {
+        processEntities:false,
+        format: true,
+        ignoreAttributes: false
+    };
+    const builder = new XMLBuilder(options);
     return builder.build(obj);
 };
 
